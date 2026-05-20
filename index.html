@@ -1,10 +1,978 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dr. Khairul Anwar Sedek — Senior Lecturer, UiTM Perlis</title>
+<meta name="description" content="Senior Lecturer in Computer Sciences at Universiti Teknologi MARA (UiTM) Cawangan Perlis. Research in software engineering, big data, web engineering, and e-government interoperability." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --ink: #1a1814;
+  --ink-soft: #3a352d;
+  --ink-mute: #6b6354;
+  --paper: #f5efe2;
+  --paper-warm: #ede5d2;
+  --paper-deep: #e3d9c0;
+  --rule: #c9bea3;
+  --accent: #8b2e1f;        /* academic crimson */
+  --accent-soft: #b85a3f;
+  --gold: #a87c2a;
+  --display: 'Fraunces', 'Times New Roman', serif;
+  --body: 'Newsreader', Georgia, serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(168, 124, 42, 0.06) 0%, transparent 35%),
+    radial-gradient(circle at 88% 75%, rgba(139, 46, 31, 0.05) 0%, transparent 40%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Subtle paper grain */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.35 0 0 0 0 0.25 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.container { max-width: 1180px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
+
+/* ============ NAV ============ */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245, 239, 226, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-inner { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 32px; max-width: 1180px; margin: 0 auto; }
+.nav-mark { font-family: var(--display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; }
+.nav-mark span { color: var(--accent); }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  font-family: var(--body); font-size: 14px; color: var(--ink-soft);
+  text-decoration: none; letter-spacing: 0.02em;
+  position: relative; padding-bottom: 2px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: var(--accent);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* ============ HERO ============ */
+.hero { padding: 90px 0 70px; border-bottom: 1px solid var(--rule); position: relative; }
+.hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 70px; align-items: start; }
+.eyebrow {
+  font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.eyebrow::before {
+  content: ''; width: 28px; height: 1px; background: var(--accent);
+}
+h1 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(46px, 6vw, 78px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 24px;
+  font-variation-settings: "opsz" 144;
+}
+h1 .italic { font-style: italic; font-weight: 400; color: var(--accent); }
+.lede {
+  font-size: 21px; line-height: 1.55;
+  color: var(--ink-soft); max-width: 540px;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+.lede em { font-style: italic; color: var(--ink); }
+
+.hero-meta {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 22px 0;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 36px;
+}
+.meta-item { }
+.meta-label {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-mute); margin-bottom: 6px;
+}
+.meta-value { font-family: var(--display); font-size: 15px; color: var(--ink); font-weight: 500; }
+
+/* Hero portrait card */
+.portrait-card {
+  position: relative;
+  padding: 36px 32px;
+  background: var(--paper-warm);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.6) inset,
+    0 30px 60px -30px rgba(26,24,20,0.25);
+}
+.portrait-card::before {
+  content: '';
+  position: absolute; top: -6px; left: -6px; right: 6px; bottom: 6px;
+  border: 1px solid var(--ink);
+  border-radius: 2px; z-index: -1;
+}
+.monogram {
+  width: 110px; height: 110px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--ink); color: var(--paper);
+  font-family: var(--display); font-size: 44px; font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  position: relative;
+}
+.monogram::after {
+  content: ''; position: absolute;
+  bottom: -8px; right: -8px;
+  width: 100%; height: 100%;
+  border: 1px solid var(--accent); z-index: -1;
+}
+.portrait-name {
+  font-family: var(--display); font-size: 22px;
+  font-weight: 600; margin-bottom: 4px;
+}
+.portrait-title { font-size: 15px; color: var(--ink-soft); margin-bottom: 18px; font-style: italic; }
+.portrait-list { list-style: none; font-size: 14px; }
+.portrait-list li {
+  padding: 9px 0;
+  border-top: 1px dashed var(--rule);
+  display: flex; justify-content: space-between; gap: 12px;
+  color: var(--ink-soft);
+}
+.portrait-list li:last-child { border-bottom: 1px dashed var(--rule); }
+.portrait-list strong {
+  font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--ink-mute); font-weight: 500;
+  align-self: center;
+}
+
+/* ============ SECTIONS ============ */
+section { padding: 90px 0; border-bottom: 1px solid var(--rule); }
+.section-head {
+  display: grid; grid-template-columns: 240px 1fr;
+  gap: 60px; margin-bottom: 60px;
+  align-items: baseline;
+}
+.section-num {
+  font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent);
+}
+.section-num span { color: var(--ink-mute); }
+h2 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(36px, 4.5vw, 54px);
+  line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 100;
+}
+h2 .italic { font-style: italic; color: var(--accent); font-weight: 400; }
+
+/* ============ ABOUT ============ */
+.about-grid { display: grid; grid-template-columns: 240px 1fr; gap: 60px; }
+.about-side { }
+.about-side h3 {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-mute); margin-bottom: 14px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--rule);
+}
+.about-side ul { list-style: none; font-size: 14px; line-height: 1.7; }
+.about-side ul li { color: var(--ink-soft); padding: 4px 0; }
+.about-side ul li strong { font-family: var(--display); color: var(--ink); font-weight: 600; display: block; }
+.about-side + .about-side { margin-top: 40px; }
+.about-body p { font-size: 19px; line-height: 1.7; margin-bottom: 22px; color: var(--ink-soft); }
+.about-body p:first-child::first-letter {
+  font-family: var(--display);
+  font-size: 76px;
+  float: left;
+  line-height: 0.85;
+  padding: 8px 12px 0 0;
+  color: var(--accent);
+  font-weight: 500;
+  font-style: italic;
+}
+.about-body p strong { color: var(--ink); font-weight: 600; }
+.expertise-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
+.tag {
+  font-family: var(--mono); font-size: 11px;
+  padding: 6px 12px; border: 1px solid var(--rule);
+  background: var(--paper-warm); color: var(--ink-soft);
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+}
+.tag:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ============ RESEARCH ============ */
+.research-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.research-card {
+  padding: 32px 28px;
+  background: var(--paper-warm);
+  border: 1px solid var(--rule);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.research-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(26,24,20,0.2);
+}
+.research-card .icon {
+  width: 44px; height: 44px;
+  border: 1px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-size: 20px; font-weight: 600;
+  color: var(--accent); margin-bottom: 20px;
+}
+.research-card h3 {
+  font-family: var(--display); font-size: 22px;
+  font-weight: 600; margin-bottom: 12px; letter-spacing: -0.01em;
+}
+.research-card p {
+  font-size: 15px; line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* ============ PROJECTS ============ */
+.project { padding: 50px 0; border-bottom: 1px dashed var(--rule); }
+.project:last-child { border-bottom: none; }
+.project-grid { display: grid; grid-template-columns: 80px 1fr 280px; gap: 40px; align-items: start; }
+.project-num {
+  font-family: var(--display); font-size: 48px;
+  font-weight: 400; font-style: italic;
+  color: var(--accent); line-height: 1;
+}
+.project-content h3 {
+  font-family: var(--display); font-size: 30px;
+  font-weight: 500; margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.project-content > p {
+  font-size: 17px; line-height: 1.65;
+  color: var(--ink-soft); margin-bottom: 18px;
+  max-width: 620px;
+}
+.project-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+.stack-pill {
+  font-family: var(--mono); font-size: 10px;
+  padding: 4px 10px; background: var(--ink);
+  color: var(--paper); letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.project-link {
+  font-family: var(--mono); font-size: 13px;
+  color: var(--accent); text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 1px;
+  transition: opacity 0.2s;
+}
+.project-link:hover { opacity: 0.7; }
+.project-link::after { content: ' ↗'; }
+.project-side {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--ink-mute); line-height: 1.7;
+  border-left: 1px solid var(--rule);
+  padding-left: 24px;
+}
+.project-side strong {
+  display: block; color: var(--ink);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 4px; font-weight: 500;
+}
+.project-side div + strong { margin-top: 14px; }
+
+/* ============ PUBLICATIONS ============ */
+.pub-intro {
+  background: var(--paper-warm);
+  border-left: 4px solid var(--accent);
+  padding: 26px 32px;
+  margin-bottom: 50px;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink-soft);
+  max-width: 760px;
+}
+.pub-list { display: flex; flex-direction: column; gap: 28px; }
+.pub-item {
+  display: grid; grid-template-columns: 70px 1fr 130px;
+  gap: 30px; padding: 22px 0;
+  border-top: 1px solid var(--rule);
+  align-items: start;
+}
+.pub-year {
+  font-family: var(--display); font-size: 22px;
+  font-weight: 500; color: var(--accent);
+  font-style: italic;
+}
+.pub-detail h4 {
+  font-family: var(--display); font-size: 17px;
+  font-weight: 600; line-height: 1.35; margin-bottom: 6px;
+  color: var(--ink);
+}
+.pub-detail .authors {
+  font-size: 14px; color: var(--ink-mute); margin-bottom: 4px;
+}
+.pub-detail .venue {
+  font-family: var(--body); font-style: italic;
+  font-size: 14px; color: var(--ink-soft);
+}
+.pub-tag {
+  font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 5px 10px; background: transparent;
+  border: 1px solid var(--rule); color: var(--ink-mute);
+  height: fit-content; justify-self: end;
+}
+.pub-tag.journal { border-color: var(--accent); color: var(--accent); }
+.pub-tag.conference { border-color: var(--gold); color: var(--gold); }
+
+.pub-links {
+  margin-top: 50px;
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+.pub-link-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 22px;
+  background: var(--ink); color: var(--paper);
+  text-decoration: none;
+  font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  transition: all 0.2s ease;
+  border: 1px solid var(--ink);
+}
+.pub-link-btn:hover { background: var(--accent); border-color: var(--accent); }
+.pub-link-btn.outline { background: transparent; color: var(--ink); }
+.pub-link-btn.outline:hover { background: var(--ink); color: var(--paper); }
+
+/* ============ TEACHING ============ */
+.teach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.teach-col h3 {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 24px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--rule);
+}
+.course-list { list-style: none; }
+.course-list li {
+  display: grid; grid-template-columns: 90px 1fr;
+  gap: 16px; padding: 10px 0;
+  border-bottom: 1px dotted var(--rule);
+  font-size: 15px;
+}
+.course-code {
+  font-family: var(--mono); font-size: 12px;
+  color: var(--ink-mute); letter-spacing: 0.06em;
+}
+.course-name { color: var(--ink-soft); }
+
+/* ============ CONTACT ============ */
+.contact { background: var(--ink); color: var(--paper); }
+.contact .container { padding-top: 90px; padding-bottom: 90px; }
+.contact h2 { color: var(--paper); }
+.contact h2 .italic { color: var(--accent-soft); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-top: 50px; }
+.contact-info p { color: rgba(245,239,226,0.7); margin-bottom: 8px; font-size: 16px; }
+.contact-info p strong {
+  font-family: var(--mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--accent-soft); display: block; margin-bottom: 4px; font-weight: 500;
+}
+.contact-info a { color: var(--paper); text-decoration: none; border-bottom: 1px solid rgba(245,239,226,0.3); padding-bottom: 2px; transition: border-color 0.2s; }
+.contact-info a:hover { border-color: var(--accent-soft); }
+.contact-block + .contact-block { margin-top: 32px; }
+
+.social-list { list-style: none; }
+.social-list li {
+  border-bottom: 1px solid rgba(245,239,226,0.15);
+}
+.social-list li a {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 0;
+  color: var(--paper); text-decoration: none;
+  font-family: var(--display); font-size: 20px;
+  transition: transform 0.3s ease;
+}
+.social-list li a:hover { transform: translateX(8px); color: var(--accent-soft); }
+.social-list li a::after {
+  content: '→';
+  font-family: var(--body); color: var(--accent-soft);
+  transition: transform 0.3s ease;
+}
+.social-list li a:hover::after { transform: translateX(4px); }
+
+/* ============ FOOTER ============ */
+footer {
+  background: var(--ink);
+  color: rgba(245,239,226,0.5);
+  padding: 32px 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  border-top: 1px solid rgba(245,239,226,0.1);
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero h1, .hero .lede, .hero-meta, .portrait-card {
+  animation: fadeUp 0.8s ease-out backwards;
+}
+.hero .eyebrow { animation: fadeUp 0.6s ease-out backwards; }
+.hero h1 { animation-delay: 0.1s; }
+.hero .lede { animation-delay: 0.25s; }
+.hero-meta { animation-delay: 0.4s; }
+.portrait-card { animation-delay: 0.35s; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .container { padding: 0 22px; }
+  .nav-inner { padding: 14px 22px; }
+  .nav-links { gap: 18px; }
+  .nav-links a { font-size: 13px; }
+  .hero { padding: 60px 0 50px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+  .hero-meta { grid-template-columns: 1fr; gap: 16px; padding: 18px 0; }
+  section { padding: 60px 0; }
+  .section-head { grid-template-columns: 1fr; gap: 20px; margin-bottom: 40px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .research-grid { grid-template-columns: 1fr; gap: 18px; }
+  .project-grid { grid-template-columns: 1fr; gap: 18px; }
+  .project-side { border-left: none; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 18px; }
+  .pub-item { grid-template-columns: 1fr; gap: 8px; }
+  .pub-tag { justify-self: start; }
+  .teach-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
+}
+</style>
+</head>
+
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-<input type=file
-       accept="image/*"
-       capture=environment>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-mark">KA<span>S</span>edek</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Dr. Khairul Anwar Sedek — PhD</div>
+        <h1>Engineering <span class="italic">software</span>, teaching the <span class="italic">data</span> that powers it.</h1>
+        <p class="lede">Senior Lecturer at <em>Universiti Teknologi MARA Cawangan Perlis</em>, working at the intersection of software engineering, big data systems, and web technologies — with two decades of teaching, research, and consultancy behind every line.</p>
+
+        <div class="hero-meta">
+          <div class="meta-item">
+            <div class="meta-label">Institution</div>
+            <div class="meta-value">UiTM Cawangan Perlis</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Discipline</div>
+            <div class="meta-value">Software Engineering</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Since</div>
+            <div class="meta-value">February 2010</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portrait-card">
+        <div class="monogram">KA</div>
+        <div class="portrait-name">Dr. Khairul Anwar Sedek</div>
+        <div class="portrait-title">Senior Lecturer · Software Engineer</div>
+        <ul class="portrait-list">
+          <li><strong>Doctorate</strong><span>PhD, USM · 2018</span></li>
+          <li><strong>Masters</strong><span>MSc IT, UUM · 2005</span></li>
+          <li><strong>Bachelors</strong><span>BSc CS, UPM · 1997</span></li>
+          <li><strong>Lab</strong><span>WMM Research Group</span></li>
+          <li><strong>Location</strong><span>Arau, Perlis · MY</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 01 <span>— About</span></div>
+      <h2>An academic who still <span class="italic">writes the code.</span></h2>
+    </div>
+
+    <div class="about-grid">
+      <div>
+        <div class="about-side">
+          <h3>Roles</h3>
+          <ul>
+            <li><strong>Senior Lecturer</strong>UiTM Perlis (2010–)</li>
+            <li><strong>Field Leader</strong>Information Technology, FSKM</li>
+            <li><strong>Group Leader</strong>Web, Mobile & Multimedia Research</li>
+            <li><strong>Editor</strong>Jurnal Intelek (2017–2020)</li>
+          </ul>
+        </div>
+        <div class="about-side">
+          <h3>Recognition</h3>
+          <ul>
+            <li><strong>Gold Award</strong>i-MIT 2021 — MSL App</li>
+            <li><strong>Silver Award</strong>CRM/WhatsApp System</li>
+            <li><strong>Bronze Award</strong>FYP Management System</li>
+            <li><strong>Excellence Service</strong>UiTM (2006, 2009)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="about-body">
+        <p>I am a Senior Lecturer in the School of Computing Sciences, Faculty of Computer and Mathematical Sciences at <strong>Universiti Teknologi MARA Cawangan Perlis</strong>, where I have taught and researched since 2010. My doctorate at <strong>Universiti Sains Malaysia</strong> focused on software engineering — specifically on hybrid hierarchical architectures for the integration and interoperability of one-stop e-government portals.</p>
+        <p>Today, my work moves between three currents. First, <strong>big data and analytics</strong> — designing teaching environments and dashboards on Hadoop, Hive, and Spark for student housing analysis, lung cancer risk assessment, and explainable AI in student success prediction. Second, <strong>web and mobile engineering</strong> — building systems that integrate Google Maps, WhatsApp APIs, IoT devices, and cloud platforms. Third, <strong>service to the discipline</strong> — reviewing for SCOReD, SCDS, JCRINN, and consulting on curriculum design for institutions across Malaysia.</p>
+        <p>Before the academy, I spent four years as a system analyst — a background I still draw on whenever I teach my students that a working system is the most honest form of theory.</p>
+
+        <div class="expertise-tags">
+          <span class="tag">Software Engineering</span>
+          <span class="tag">Big Data / Hadoop</span>
+          <span class="tag">Apache Spark</span>
+          <span class="tag">Web Engineering</span>
+          <span class="tag">E-Government</span>
+          <span class="tag">Database Systems</span>
+          <span class="tag">Cloud Architecture</span>
+          <span class="tag">Interoperability</span>
+          <span class="tag">Secure Web Apps</span>
+          <span class="tag">Data Visualization</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESEARCH ============ -->
+<section id="research" class="reveal">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 02 <span>— Research Interests</span></div>
+      <h2>Three threads, one <span class="italic">working loom.</span></h2>
+    </div>
+
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="icon">I</div>
+        <h3>Software Architecture & Interoperability</h3>
+        <p>Hybrid hierarchical and SOA-based architectures for one-stop e-government portals; secure development with UMLSEC; OWASP-guided web application design; systematic reviews of integration patterns.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="icon">II</div>
+        <h3>Big Data & Analytical Systems</h3>
+        <p>Interactive dashboards on Hadoop, Hive, and Spark for student housing, blood donation during COVID-19, food-diabetes relationships, lung cancer risk, and rental house data in Perlis.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="icon">III</div>
+        <h3>Web, Mobile & IoT Integration</h3>
+        <p>Web-based systems with WhatsApp and Google Maps integration; IoT home security with Telegram bots; geolocation services for workshops; sign language translation; CRM for the educational sector.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects" class="reveal">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 03 <span>— Selected Projects</span></div>
+      <h2>Code that <span class="italic">teaches itself.</span></h2>
+    </div>
+
+    <div class="project">
+      <div class="project-grid">
+        <div class="project-num">01</div>
+        <div class="project-content">
+          <h3>Big Data Lab — Hadoop &amp; Hive on Docker</h3>
+          <p>A fully containerized teaching environment for Hadoop HDFS, Apache Hive 4.0, MapReduce, and data warehousing. Used in workshops and undergraduate coursework, with hands-on exercises for external tables, Parquet ingestion, MapReduce WordCount on YARN, and Power BI integration via ODBC.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Hadoop</span>
+            <span class="stack-pill">Hive 4.0</span>
+            <span class="stack-pill">Docker</span>
+            <span class="stack-pill">Hue</span>
+            <span class="stack-pill">Power BI</span>
+          </div>
+          <a class="project-link" href="https://github.com/khairulas/bigdata-hadoop-hive-lab" target="_blank" rel="noopener">github.com/khairulas/bigdata-hadoop-hive-lab</a>
+        </div>
+        <div class="project-side">
+          <strong>Role</strong>
+          <div>Author · Maintainer</div>
+          <strong>Used By</strong>
+          <div>UiTM Big Data Workshops 2021–2025</div>
+          <strong>Stack</strong>
+          <div>NameNode · Hive Server · Beeline · YARN · ODBC</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-grid">
+        <div class="project-num">02</div>
+        <div class="project-content">
+          <h3>Big Data Lab — Apache Spark &amp; HDFS on Docker</h3>
+          <p>A companion lab for teaching distributed processing with PySpark, JupyterLab, and HDFS. Includes notebooks covering CSV ingestion, Spark DataFrame conversion, Parquet writes to HDFS, SparkSQL querying, and visualisation through Streamlit and Power BI via the Spark Thrift Server.</p>
+          <div class="project-stack">
+            <span class="stack-pill">PySpark 3.3</span>
+            <span class="stack-pill">JupyterLab</span>
+            <span class="stack-pill">HDFS</span>
+            <span class="stack-pill">Streamlit</span>
+            <span class="stack-pill">Docker Compose</span>
+          </div>
+          <a class="project-link" href="https://github.com/khairulas/bigdata-hadoop-spark-lab" target="_blank" rel="noopener">github.com/khairulas/bigdata-hadoop-spark-lab</a>
+        </div>
+        <div class="project-side">
+          <strong>Role</strong>
+          <div>Author · Instructor</div>
+          <strong>Course Link</strong>
+          <div>DSC650 · DSC651</div>
+          <strong>Stack</strong>
+          <div>Spark Master · Worker · Thrift Server · ODBC</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-grid">
+        <div class="project-num">03</div>
+        <div class="project-content">
+          <h3>AIQuiz — AI-Assisted Quiz Application</h3>
+          <p>A Flask-based web application exploring AI-assisted question generation and quiz delivery. Built with a Python backend, server-rendered templates, and a lightweight static asset pipeline — a teaching platform for prototyping AI-in-the-loop educational tools.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Python</span>
+            <span class="stack-pill">Flask</span>
+            <span class="stack-pill">HTML/CSS</span>
+            <span class="stack-pill">Jinja2</span>
+          </div>
+          <a class="project-link" href="https://github.com/khairulas/aiquiz" target="_blank" rel="noopener">github.com/khairulas/aiquiz</a>
+        </div>
+        <div class="project-side">
+          <strong>Role</strong>
+          <div>Author</div>
+          <strong>Theme</strong>
+          <div>AI in Education</div>
+          <strong>Stack</strong>
+          <div>app.py · templates · static</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-grid">
+        <div class="project-num">04</div>
+        <div class="project-content">
+          <h3>iFYPevS — Final Year Project Evaluation System</h3>
+          <p>An information system supporting the workflow of Final Year Project supervision and evaluation in the Faculty of Computer and Mathematical Sciences. Builds on the FYP Management System recognised at i-IDeA 2016, with refinements informed by years of teaching CSP600 and CSP650.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Web Application</span>
+            <span class="stack-pill">FYP Workflow</span>
+            <span class="stack-pill">Academic Systems</span>
+          </div>
+          <a class="project-link" href="https://github.com/khairulas/ifypevs" target="_blank" rel="noopener">github.com/khairulas/ifypevs</a>
+        </div>
+        <div class="project-side">
+          <strong>Role</strong>
+          <div>Designer · Lead Developer</div>
+          <strong>Heritage</strong>
+          <div>Bronze Award, i-IDeA 2016</div>
+          <strong>Audience</strong>
+          <div>FSKM Faculty &amp; Students</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PUBLICATIONS ============ -->
+<section id="publications" class="reveal">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 04 <span>— Selected Publications</span></div>
+      <h2>A decade of <span class="italic">peer-reviewed</span> writing.</h2>
+    </div>
+
+    <p class="pub-intro">A selection from over thirty publications in software engineering, big data systems, e-government interoperability, and web-based applications. Full citation metrics are tracked on Google Scholar and Web of Science (links below).</p>
+
+    <div class="pub-list">
+
+      <div class="pub-item">
+        <div class="pub-year">2025</div>
+        <div class="pub-detail">
+          <h4>Explainable AI for Student Success Prediction: A Framework for Uncovering Key Drivers and Enabling Targeted Intervention</h4>
+          <div class="authors">Qiu, H., Sedek, K. A., Ibrahim, N., &amp; Ismail, A.</div>
+          <div class="venue">Conference Proceedings, 484–488</div>
+        </div>
+        <span class="pub-tag conference">Conference</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2025</div>
+        <div class="pub-detail">
+          <h4>Thyroid Insight: Navigating Disease Data Through Interactive Visualization with Prediction</h4>
+          <div class="authors">Osman, M. N., Nasib, A. M., Sedek, K. A., Othman, N. A., &amp; Maghribi, M.</div>
+          <div class="venue">Journal of Computing Research and Innovation, 10(2), 230–241</div>
+        </div>
+        <span class="pub-tag journal">Journal</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2024</div>
+        <div class="pub-detail">
+          <h4>Leveraging Big Data and Interactive Dashboards for Enhanced Lung Cancer Risk Assessment</h4>
+          <div class="authors">Sedek, K. A., Mohd Fakhrul Annuar, N. K. S., Osman, M. N., &amp; Othman, N. A.</div>
+          <div class="venue">International Symposium on Computer Science and Mathematics (SCOMATICS 2024)</div>
+        </div>
+        <span class="pub-tag conference">Conference</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2024</div>
+        <div class="pub-detail">
+          <h4>The Implementation of Campus Bookstore Management System Integrated with WhatsApp and Google Services</h4>
+          <div class="authors">Osman, M. N., Sedek, K. A., Othman, N. A., Maghribi, M., &amp; Ahmad, A. I.</div>
+          <div class="venue">Journal of Computing Research and Innovation, 9(2), 280–289</div>
+        </div>
+        <span class="pub-tag journal">Journal</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2024</div>
+        <div class="pub-detail">
+          <h4>Web-based Planner System: A User-Centric Evaluation for University Community</h4>
+          <div class="authors">Othman, N. A., Osman, M. N., Sedek, K. A., &amp; Shamsuhaidi, N.</div>
+          <div class="venue">Journal of Computing Research and Innovation (JCRINN), 9(1), 56–65</div>
+        </div>
+        <span class="pub-tag journal">Journal</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2023</div>
+        <div class="pub-detail">
+          <h4>Design and Implementation of Big Data Visualization for Student Housing Analysis</h4>
+          <div class="authors">Sedek, K. A., Mohd Maulus, N. F., Osman, M. N., &amp; Othman, N. A.</div>
+          <div class="venue">Journal of Information and Knowledge Management (JIKM), 2, 124–142</div>
+        </div>
+        <span class="pub-tag journal">Journal</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2023</div>
+        <div class="pub-detail">
+          <h4>Image Steganography Using Web Application</h4>
+          <div class="authors">Othman, N. A., Osman, M. N., Sedek, K. A., &amp; Shariffudin, M. N. H.</div>
+          <div class="venue">Journal of Computing Research and Innovation, 8(2), 1–11</div>
+        </div>
+        <span class="pub-tag journal">Journal</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2021</div>
+        <div class="pub-detail">
+          <h4>Smart Agro E-Marketplace Architectural Model Based on Cloud Data Platform</h4>
+          <div class="authors">Sedek, K. A., Osman, M. N., Omar, M. A., Wahab, M. H. A., &amp; Idrus, S. Z. S.</div>
+          <div class="venue">Journal of Physics: Conference Series, 1874(1), 012022</div>
+        </div>
+        <span class="pub-tag conference">Conference</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2020</div>
+        <div class="pub-detail">
+          <h4>Quran Indexing Using Cloud Database</h4>
+          <div class="authors">Sedek, K. A., Ghazali, N. R., &amp; Osman, M. N.</div>
+          <div class="venue">Charting the Sustainable Future of ASEAN in Science and Technology, Springer Singapore, 37–47</div>
+        </div>
+        <span class="pub-tag journal">Book Chapter</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2018</div>
+        <div class="pub-detail">
+          <h4>Hybrid Hierarchical Architecture for Integration and Interoperability of a One-Stop E-Government Portal</h4>
+          <div class="authors">Sedek, K. A., Osman, M. N., Omar, M. A., &amp; Sulaiman, S.</div>
+          <div class="venue">Journal of Computing Research and Innovation, 3(4), 1–11</div>
+        </div>
+        <span class="pub-tag journal">Journal</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2015</div>
+        <div class="pub-detail">
+          <h4>Towards Effectiveness of Integration and Interoperability of One-Stop E-Government Portal</h4>
+          <div class="authors">Sedek, K. A., Omar, M. A., &amp; Sulaiman, S.</div>
+          <div class="venue">Jurnal Teknologi, 77(9)</div>
+        </div>
+        <span class="pub-tag journal">Journal</span>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2014</div>
+        <div class="pub-detail">
+          <h4>A Hybrid Architecture for One-Stop E-Government Portal Integration and Interoperability</h4>
+          <div class="authors">Sedek, K. A., Omar, M. A., &amp; Sulaiman, S.</div>
+          <div class="venue">8th Malaysian Software Engineering Conference (MySEC 2014), IEEE, 96–101</div>
+        </div>
+        <span class="pub-tag conference">Conference</span>
+      </div>
+
+    </div>
+
+    <div class="pub-links">
+      <a class="pub-link-btn" href="https://scholar.google.com.my/citations?user=LQPM-OwAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar Profile →</a>
+      <a class="pub-link-btn outline" href="https://www.webofscience.com/wos/author/record/AAX-7932-2021" target="_blank" rel="noopener">Web of Science (AAX-7932-2021) →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEACHING ============ -->
+<section id="teaching" class="reveal">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 05 <span>— Teaching</span></div>
+      <h2>Over twenty courses, <span class="italic">one craft.</span></h2>
+    </div>
+
+    <div class="teach-grid">
+      <div class="teach-col">
+        <h3>Postgraduate &amp; Senior Undergraduate</h3>
+        <ul class="course-list">
+          <li><span class="course-code">ICT651</span><span class="course-name">System Integration and Architecture</span></li>
+          <li><span class="course-code">ICT600</span><span class="course-name">Web Application and Technology</span></li>
+          <li><span class="course-code">DSC650</span><span class="course-name">Data Technology and Future Emergence</span></li>
+          <li><span class="course-code">DSC651</span><span class="course-name">Data Representation and Reporting Techniques</span></li>
+          <li><span class="course-code">ITS581</span><span class="course-name">Information Systems Audit and Control</span></li>
+          <li><span class="course-code">ITS580</span><span class="course-name">Enterprise Architecture Framework</span></li>
+          <li><span class="course-code">ITT545</span><span class="course-name">Web Engineering</span></li>
+          <li><span class="course-code">CSP600</span><span class="course-name">Project Formulation</span></li>
+          <li><span class="course-code">CSP650</span><span class="course-name">Final Year Project</span></li>
+        </ul>
+      </div>
+
+      <div class="teach-col">
+        <h3>Undergraduate &amp; Foundational</h3>
+        <ul class="course-list">
+          <li><span class="course-code">ITS571</span><span class="course-name">Database Engineering</span></li>
+          <li><span class="course-code">ITS411</span><span class="course-name">Fundamentals of IS Development</span></li>
+          <li><span class="course-code">ITS521</span><span class="course-name">E-Commerce Application Development</span></li>
+          <li><span class="course-code">ITS332</span><span class="course-name">Information Systems Development</span></li>
+          <li><span class="course-code">ITS232</span><span class="course-name">Intro to Database Management</span></li>
+          <li><span class="course-code">CSC574</span><span class="course-name">Dynamic Web Application Development</span></li>
+          <li><span class="course-code">CSC318</span><span class="course-name">Web Application and Development</span></li>
+          <li><span class="course-code">CSC134</span><span class="course-name">Computer and Information Processing</span></li>
+          <li><span class="course-code">ICT400</span><span class="course-name">Fundamentals of Information Technology</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">§ 06 <span>— Contact</span></div>
+      <h2>Open for <span class="italic">collaboration,</span> review, &amp; consultancy.</h2>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-block">
+          <p><strong>Office</strong></p>
+          <p>Pusat Pengajian Sains Pengkomputeran</p>
+          <p>Fakulti Sains Komputer dan Matematik</p>
+          <p>Universiti Teknologi MARA Cawangan Perlis</p>
+          <p>Kampus Arau, 02600 Arau, Perlis</p>
+        </div>
+        <div class="contact-block">
+          <p><strong>Email</strong></p>
+          <p><a href="mailto:khairulanwarsedek@uitm.edu.my">khairulanwarsedek@uitm.edu.my</a></p>
+        </div>
+        <div class="contact-block">
+          <p><strong>Phone</strong></p>
+          <p><a href="tel:+60194746960">+60 19-474 6960</a></p>
+        </div>
+      </div>
+
+      <ul class="social-list">
+        <li><a href="https://scholar.google.com.my/citations?user=LQPM-OwAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="https://www.webofscience.com/wos/author/record/AAX-7932-2021" target="_blank" rel="noopener">Web of Science</a></li>
+        <li><a href="https://github.com/khairulas" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 KHAIRUL ANWAR SEDEK</div>
+    <div>UITM CAWANGAN PERLIS · ARAU</div>
+  </div>
+</footer>
+
+<script>
+// Reveal on scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
 </body>
 </html>
