@@ -73,6 +73,66 @@ body::before {
 
 .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
 
+/* ============ NEWS STRIP ============ */
+.news-strip {
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: 1px solid var(--accent);
+  position: relative;
+  overflow: hidden;
+}
+.news-strip::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.85 0 0 0 0 0.7 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.news-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+}
+.news-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  background: var(--accent);
+  color: var(--paper);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.news-text {
+  font-family: var(--display);
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--paper);
+  font-weight: 400;
+}
+.news-text strong {
+  font-weight: 600;
+  color: var(--paper);
+  font-style: italic;
+}
+.news-text .news-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,239,226,0.55);
+  margin-left: 8px;
+  font-style: normal;
+}
+@media (max-width: 700px) {
+  .news-inner { flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px 22px; }
+  .news-text { font-size: 14px; }
+}
+
 /* ============ NAV ============ */
 nav {
   position: sticky; top: 0; z-index: 100;
@@ -530,6 +590,16 @@ footer {
   </div>
 </nav>
 
+<!-- ============ NEWS STRIP ============ -->
+<div class="news-strip">
+  <div class="news-inner">
+    <span class="news-badge">Latest</span>
+    <div class="news-text">
+      Awarded <strong>Silver</strong> at the Darul Ridzuan International Innovation &amp; Invention Competition (DRIIC 2026) for <strong>iFYPevS — AI-Driven FYP Evaluation</strong>.<span class="news-date">20 May 2026</span>
+    </div>
+  </div>
+</div>
+
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div class="container">
@@ -595,6 +665,7 @@ footer {
         <div class="about-side">
           <h3>Recognition</h3>
           <ul>
+            <li><strong>Silver Award</strong>DRIIC 2026 — iFYPevS</li>
             <li><strong>Gold Award</strong>i-MIT 2021 — MSL App</li>
             <li><strong>Silver Award</strong>CRM/WhatsApp System</li>
             <li><strong>Bronze Award</strong>FYP Management System</li>
@@ -744,22 +815,25 @@ footer {
       <div class="project-grid">
         <div class="project-num">04</div>
         <div class="project-content">
-          <h3>iFYPevS — Final Year Project Evaluation System</h3>
-          <p>An information system supporting the workflow of Final Year Project supervision and evaluation in the Faculty of Computer and Mathematical Sciences. Builds on the FYP Management System recognised at i-IDeA 2016, with refinements informed by years of teaching CSP600 and CSP650.</p>
+          <h3>iFYPevS — AI-Driven Final Year Project Evaluation</h3>
+          <p>An information system that revolutionises academic assessment of Final Year Projects through AI-driven evaluation. Built on a decade of insight from teaching CSP600 and CSP650, iFYPevS supports the full FYP supervision workflow — proposal management, supervisor allocation, milestone tracking, and rubric-driven evaluation — with AI assistance that surfaces consistency, fairness, and quality signals to examiners.</p>
           <div class="project-stack">
-            <span class="stack-pill">Web Application</span>
+            <span class="stack-pill">AI Evaluation</span>
             <span class="stack-pill">FYP Workflow</span>
+            <span class="stack-pill">Web Application</span>
             <span class="stack-pill">Academic Systems</span>
           </div>
           <a class="project-link" href="https://github.com/khairulas/ifypevs" target="_blank" rel="noopener">github.com/khairulas/ifypevs</a>
         </div>
         <div class="project-side">
           <strong>Role</strong>
-          <div>Designer · Lead Developer</div>
+          <div>Team Leader · Lead Designer</div>
+          <strong>Latest Award</strong>
+          <div>Silver, DRIIC 2026 — Category A: Professional</div>
           <strong>Heritage</strong>
-          <div>Bronze Award, i-IDeA 2016</div>
-          <strong>Audience</strong>
-          <div>FSKM Faculty &amp; Students</div>
+          <div>Builds on Bronze Award, i-IDeA 2016</div>
+          <strong>Team</strong>
+          <div>Siti Zulaiha Ahmad · Norfiza Ibrahim · Mohd Nizam Osman · Nor Arzami Othman</div>
         </div>
       </div>
     </div>
